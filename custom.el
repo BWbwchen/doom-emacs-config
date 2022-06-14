@@ -12,6 +12,7 @@
  '(org-latex-compiler "xelatex -shell-escape")
  '(org-latex-listings t t)
  '(org-export-preserve-breaks nil)
+ '(org-export-with-author nil)
  '(org-latex-prefer-user-labels t t)
  '(pdf-latex-command "xelatex")
  '(sage-shell:use-prompt-toolkit nil)

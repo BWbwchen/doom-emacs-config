@@ -377,7 +377,7 @@
    keywordstyle=\\color{magenta},
    numberstyle=\\tiny\\color{codegray},
    stringstyle=\\color{codepurple},
-   basicstyle=\ttfamily\\footnotesize,
+   basicstyle=\\ttfamily\\footnotesize,
    breakatwhitespace=false,
    breaklines=true,
    captionpos=b,
@@ -390,6 +390,7 @@
    tabsize=4
  }
 \\lstset{style=mystyle}
+\\author{Bo-Wei Chen 陳博暐 \\\\ tim.chenbw@gmail.com}
 
 [NO-DEFAULT-PACKAGES]
 [PACKAGES]
