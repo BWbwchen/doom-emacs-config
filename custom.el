@@ -6,14 +6,14 @@
  '(LaTeX-command "xelatex -shell-escape")
  '(org-agenda-start-day "+0d" t)
  '(org-agenda-start-on-weekday nil)
+ '(org-export-preserve-breaks nil)
+ '(org-export-with-author nil)
  '(org-format-latex-options
    '(:foreground "Black" :background "White" :scale 2.0 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
      ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-latex-compiler "xelatex -shell-escape")
- '(org-latex-listings t t)
- '(org-export-preserve-breaks nil)
- '(org-export-with-author nil)
- '(org-latex-prefer-user-labels t t)
+ '(org-latex-listings 'minted)
+ '(org-latex-prefer-user-labels t)
  '(pdf-latex-command "xelatex")
  '(sage-shell:use-prompt-toolkit nil)
  '(sage-shell:use-simple-prompt t)

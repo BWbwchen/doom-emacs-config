@@ -405,9 +405,8 @@
 
 
 ;; (setq org-latex-preview 't)
-(setq org-latex-listings 't)
-(setq org-export-latex-listings 'minted)
 (setq org-latex-default-class "bw")
+(setq org-latex-packages-alist '(("" "minted")))
 (setq doc-view-continuous 't)
 (setq org-return-follows-link 't)
 (setq org-latex-compiler "xelatex")
