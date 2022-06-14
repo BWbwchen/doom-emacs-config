@@ -340,6 +340,12 @@
 \\usepackage{enumitem}
 \\usepackage{mdframed}
 
+
+\\usepackage{paralist}
+\\renewenvironment{itemize}[1]{\\begin{compactitem}#1}{\\end{compactitem}}
+\\renewenvironment{enumerate}[1]{\\begin{compactenum}#1}{\\end{compactenum}}
+\\renewenvironment{description}[0]{\\begin{compactdesc}}{\\end{compactdesc}}
+
 \\usepackage{minted}
 \\usepackage{listings}
 
@@ -390,6 +396,8 @@
    tabsize=4
  }
 \\lstset{style=mystyle}
+\\usepackage{setspace}
+\\singlespacing
 \\author{Bo-Wei Chen 陳博暐 \\\\ tim.chenbw@gmail.com}
 
 [NO-DEFAULT-PACKAGES]

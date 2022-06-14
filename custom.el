@@ -14,6 +14,7 @@
  '(org-latex-compiler "xelatex -shell-escape")
  '(org-latex-listings 'minted)
  '(org-latex-prefer-user-labels t)
+ '(org-export-headline-levels 4)
  '(pdf-latex-command "xelatex")
  '(sage-shell:use-prompt-toolkit nil)
  '(sage-shell:use-simple-prompt t)
