@@ -7,10 +7,11 @@
  '(org-agenda-start-day "+0d" t)
  '(org-agenda-start-on-weekday nil)
  '(org-format-latex-options
-   '(:foreground "Black" :background "White" :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+   '(:foreground "Black" :background "White" :scale 2.0 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
      ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-latex-compiler "xelatex -shell-escape")
  '(org-latex-listings t t)
+ '(org-export-preserve-breaks nil)
  '(org-latex-prefer-user-labels t t)
  '(pdf-latex-command "xelatex")
  '(sage-shell:use-prompt-toolkit nil)

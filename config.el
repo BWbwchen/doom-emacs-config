@@ -286,13 +286,13 @@
                 '(("d" "default" entry
                    "* %?"
                    :target (file+head "%<%Y_%m_%d>.org"
-                                      "#+title: %<%Y-%m-%d>\n#+SETUPFILE: ~/.doom.d/latex-template.org\n")))
+                                      "#+title: %<%Y-%m-%d>\n")))
 
         org-roam-capture-templates
                 '(("d" "default" plain
                    "* %?"
                    :target (file+head "${title}.org"
-                                      "#+title: ${title}\n#+SETUPFILE: ~/.doom.d/latex-template.org\n")))
+                                      "#+title: ${title}\n")))
         )
 
 )
@@ -321,15 +321,95 @@
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+(add-to-list 'org-latex-classes
+               '("elsarticle"
+                 "\\documentclass{elsarticle}
+ [NO-DEFAULT-PACKAGES]
+ [PACKAGES]
+ [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+(add-to-list 'org-latex-classes
+               '("bw"
+                 "\\documentclass[a4paper, 12pt]{article}
+\\usepackage{fullpage,mathpazo,amsfonts,nicefrac}
+\\usepackage{enumitem}
+\\usepackage{mdframed}
+
+\\usepackage{minted}
+\\usepackage{listings}
+
+\\usepackage{fontspec}
+\\usepackage{xeCJK}
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\usepackage{indentfirst}
+
+\\usepackage{subcaption}
+\\usepackage{graphicx}
+
+\\usepackage{pgfplots}
+\\usepackage{filecontents}
+\\usepackage{adjustbox}
+\\usepackage{longtable}
+\\usepackage{algorithm2e}
+
+\\usepgfplotslibrary{external}
+\\tikzexternalize
+
+
+\\setmainfont[Mapping=tex-text]{Times New Roman}
+
+\\setCJKmainfont{cwTeXKai}
+
+\\XeTeXlinebreaklocale \"zh\"
+\\XeTeXlinebreakskip = 0pt plus 1pt
+
+\\usepackage[colorlinks,citecolor=red,urlcolor=blue,bookmarks=false,hypertexnames=true,bookmarks=true]{hyperref}
+
+\\lstdefinestyle{mystyle}{
+   backgroundcolor=\\color{backcolour},
+   commentstyle=\\color{codegreen},
+   keywordstyle=\\color{magenta},
+   numberstyle=\\tiny\\color{codegray},
+   stringstyle=\\color{codepurple},
+   basicstyle=\ttfamily\\footnotesize,
+   breakatwhitespace=false,
+   breaklines=true,
+   captionpos=b,
+   keepspaces=true,
+   numbers=left,
+   numbersep=5pt,
+   showspaces=false,
+   showstringspaces=false,
+   showtabs=false,
+   tabsize=4
+ }
+\\lstset{style=mystyle}
+
+[NO-DEFAULT-PACKAGES]
+[PACKAGES]
+[EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+)
 
 
 ;; (setq org-latex-preview 't)
 (setq org-latex-listings 't)
 (setq org-export-latex-listings 'minted)
+(setq org-latex-default-class "bw")
 (setq doc-view-continuous 't)
 (setq org-return-follows-link 't)
-;; (setq org-latex-compiler "xelatex --shell-escape")
+(setq org-latex-compiler "xelatex")
 (setq org-latex-pdf-process
       '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
     "bibtex %b"
