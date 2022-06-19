@@ -286,13 +286,13 @@
                 '(("d" "default" entry
                    "* %?"
                    :target (file+head "%<%Y_%m_%d>.org"
-                                      "#+title: %<%Y-%m-%d>\n")))
+                                      "#+title: %<%Y-%m-%d>\n#+latex_header: \addbibresource{../bib/zotero.bib}\n")))
 
         org-roam-capture-templates
                 '(("d" "default" plain
                    "* %?"
                    :target (file+head "${title}.org"
-                                      "#+title: ${title}\n")))
+                                      "#+title: ${title}\n#+latex_header: \addbibresource{../bib/zotero.bib}\n")))
         )
 
 )
@@ -347,6 +347,8 @@
 \\renewenvironment{description}[0]{\\begin{compactdesc}}{\\end{compactdesc}}
 
 \\usepackage{minted}
+\\surroundwithmdframed{minted}
+
 \\usepackage{listings}
 
 \\usepackage{fontspec}
@@ -376,6 +378,12 @@
 \\XeTeXlinebreakskip = 0pt plus 1pt
 
 \\usepackage[colorlinks,citecolor=red,urlcolor=blue,bookmarks=false,hypertexnames=true,bookmarks=true]{hyperref}
+
+\\usepackage[style=ieee,
+citestyle=numeric-comp,
+backend=bibtex,
+sorting=none]{biblatex}
+\\AtEveryBibitem{\\clearfield{urlyear}}
 
 \\lstdefinestyle{mystyle}{
    backgroundcolor=\\color{backcolour},
@@ -425,6 +433,43 @@
     "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 (add-hook 'org-mode-hook 'org-fragtog-mode)
+
+
+(defun update-other-buffer ()
+  (interactive)
+  (other-window 1)
+  (revert-buffer nil t)
+  (other-window -1))
+
+(defun latex-compile-and-update-other-buffer ()
+  "Has as a premise that it's run from a latex-mode buffer and the
+   other buffer already has the PDF open"
+  (interactive)
+  (save-buffer)
+  (shell-command (concat "pdflatex " (buffer-file-name)))
+  (switch-to-buffer (other-buffer))
+  (kill-buffer)
+  (update-other-buffer))
+
+(defun org-compile-beamer-and-update-other-buffer ()
+  "Has as a premise that it's run from an org-mode buffer and the
+   other buffer already has the PDF open"
+  (interactive)
+  (org-beamer-export-to-pdf)
+  (update-other-buffer))
+
+(defun org-compile-latex-and-update-other-buffer ()
+  "Has as a premise that it's run from an org-mode buffer and the
+   other buffer already has the PDF open"
+  (interactive)
+  (org-latex-export-to-pdf)
+  (update-other-buffer))
+
+(eval-after-load 'latex-mode
+  '(define-key latex-mode-map (kbd "C-c r") 'latex-compile-and-update-other-buffer))
+
+(define-key org-mode-map (kbd "C-c r") 'org-compile-latex-and-update-other-buffer)
+(define-key org-mode-map (kbd "C-c br") 'org-compile-beamer-and-update-other-buffer)
 
 ;; (add-hook 'org-mode-hook
 ;;       (lambda ()
@@ -539,3 +584,36 @@
 (advice-add 'org--create-inline-image
             :filter-return #'org--create-inline-image-advice)
 
+
+;; org-ref
+(setq bibtex-completion-bibliography '("~/logseq/bib/zotero.bib")
+	bibtex-completion-library-path '("~/logseq/bib/bibtex-pdfs/")
+	bibtex-completion-notes-path "~/logseq/pages/"
+	bibtex-completion-notes-template-multiple-files "#+title: ${title}\n See [[cite:&${=key=}]]\n* "
+	bibtex-completion-additional-search-fields '(keywords)
+	bibtex-completion-display-formats
+	'((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+	  (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+	  (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+	  (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+	  (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
+	bibtex-completion-pdf-open-function
+	(lambda (fpath)
+	  ;; (call-process "zotero" nil 0 nil fpath))
+        ;; (org-open-link-from-string (concat "zotero://open-pdf/library/items/" (file-name-nondirectory fpath))))
+	  (org-open-file fpath))
+        )
+
+(map! :after org
+      :map org-mode-map
+      ["C-c ]"] #'org-ref-insert-link)
+
+(require 'bibtex)
+
+(setq bibtex-autokey-year-length 4
+      bibtex-autokey-name-year-separator "-"
+      bibtex-autokey-year-title-separator "-"
+      bibtex-autokey-titleword-separator "-"
+      bibtex-autokey-titlewords 2
+      bibtex-autokey-titlewords-stretch 1
+      bibtex-autokey-titleword-length 6)
