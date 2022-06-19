@@ -589,7 +589,7 @@ sorting=none]{biblatex}
 (setq bibtex-completion-bibliography '("~/logseq/bib/zotero.bib")
 	bibtex-completion-library-path '("~/logseq/bib/bibtex-pdfs/")
 	bibtex-completion-notes-path "~/logseq/pages/"
-	bibtex-completion-notes-template-multiple-files "#+title: ${title}\n See [[cite:&${=key=}]]\n* "
+	bibtex-completion-notes-template-multiple-files ":PROPERTIES:\n:ID:       ${=key=}\n:END:\n#+title: ${title}\n See [[cite:&${=key=}]]\n* "
 	bibtex-completion-additional-search-fields '(keywords)
 	bibtex-completion-display-formats
 	'((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
