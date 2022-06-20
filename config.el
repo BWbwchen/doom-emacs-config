@@ -286,13 +286,13 @@
                 '(("d" "default" entry
                    "* %?"
                    :target (file+head "%<%Y_%m_%d>.org"
-                                      "#+title: %<%Y-%m-%d>\n#+latex_header: \addbibresource{../bib/zotero.bib}\n")))
+                                      "#+title: %<%Y-%m-%d>\n#+latex_header: \\addbibresource{../bib/zotero.bib}\n")))
 
         org-roam-capture-templates
                 '(("d" "default" plain
                    "* %?"
                    :target (file+head "${title}.org"
-                                      "#+title: ${title}\n#+latex_header: \addbibresource{../bib/zotero.bib}\n")))
+                                      "#+title: ${title}\n#+latex_header: \\addbibresource{../bib/zotero.bib}\n")))
         )
 
 )
