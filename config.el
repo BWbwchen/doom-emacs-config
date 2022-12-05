@@ -131,73 +131,12 @@
        :m "C-k" nil
        :m "C-l" nil))
 
-;; for centuar tabs
-(use-package! centaur-tabs
-  :config
-(setq centaur-tabs-style "bar"
-  centaur-tabs-height 20
-	  centaur-tabs-set-icons t
-	  centaur-tabs-set-modified-marker t
-	  centaur-tabs-show-navigation-buttons t
-	  centaur-tabs-set-bar 'under
-	  x-underline-at-descent-line t)
-   (setq centaur-tabs-cycle-scope 'tabs)
-   (centaur-tabs-group-by-projectile-project)
-   (centaur-tabs-headline-match)
-   (centaur-tabs-mode t)
-)
-;; (map!
-;;       :desc "evil-tabs-left"
-;;       "L" #'centaur-tabs-forward)
-;; (map!
-;;       :desc "evil-tabs-right"
-;;       "H" #'centaur-tabs-backward)
-
-
-(map! :after smartparens
-      :map smartparens-mode-map
-      [C-h] nil
-      [C-j] nil
-      [C-k] nil
-      [C-l] nil)
-
-(map! :after cc-mode
-      :map c-mode-map
-      :nv "C-h" #'centaur-tabs-backward
-      :nv "C-l" #'centaur-tabs-forward)
-(map! :after cc-mode
-      :map c++-mode-map
-      :nv "C-h" #'centaur-tabs-backward
-      :nv "C-l" #'centaur-tabs-forward)
-(map! :after cc-mode
-      :map cpp-mode-map
-      :nv "C-h" #'centaur-tabs-backward
-      :nv "C-l" #'centaur-tabs-forward)
-(map! :after lsp-mode
-      :map lsp-mode-map
-      :nvm "C-h" #'centaur-tabs-backward
-      :nvm "C-l" #'centaur-tabs-forward)
-; for window movement
-(map! :g
-      :desc "evil-window-left"
-      ;; "C-h" #'evil-window-left)
-      "C-h" #'centaur-tabs-backward)
-(map! :m
-      :desc "evil-window-down"
-      "C-j" #'evil-window-down)
-(map! :m
-      :desc "evil-window-up"
-      "C-k" #'evil-window-up)
-(map! :g
-      :desc "evil-window-right"
-      ;; "C-l" #'evil-window-right)
-      "C-l" #'centaur-tabs-forward)
-
 ; autosave
 (setq +format-on-save-enabled-modes
       '(not c-mode))
-;; (setq +format-on-save-enabled-modes
-;;       '(not cpp-mode))
+(setq +format-on-save-enabled-modes
+      '(not cpp-mode))
+(add-hook 'before-save-hook #'+format/buffer nil t)
 
 ; file setting
 (display-time-mode 1)
@@ -225,8 +164,8 @@
         (setq treemacs-width 20)
         (setq doom-themes-treemacs-theme 'doom-colors)
         (doom-themes-treemacs-config)
-        (treemacs-display-current-project-exclusively)
-        (treemacs-project-follow-mode)
+        ;; (treemacs-display-current-project-exclusively t)
+        (treemacs-project-follow-mode t)
         (treemacs-fringe-indicator-mode t)
 ;        (treemacs-tag-follow-mode)
         (treemacs-follow-mode)
@@ -333,10 +272,12 @@
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
 (add-to-list 'org-latex-classes
-               '("bw"
+               '("bw_noname"
                  "\\documentclass[a4paper, 12pt]{article}
 \\usepackage{fullpage,mathpazo,amsfonts,nicefrac}
+\\usepackage[top=1.5cm,bottom=1.5cm,left=1.5cm, right=1.5cm]{geometry}
 \\usepackage{enumitem}
 \\usepackage{mdframed}
 
@@ -355,7 +296,6 @@
 \\usepackage{xeCJK}
 \\usepackage{amsmath}
 \\usepackage{amssymb}
-\\usepackage{indentfirst}
 
 \\usepackage{subcaption}
 \\usepackage{graphicx}
@@ -364,7 +304,96 @@
 \\usepackage{filecontents}
 \\usepackage{adjustbox}
 \\usepackage{longtable}
-\\usepackage{algorithm2e}
+\\usepackage[ruled,lined,linesnumbered]{algorithm2e}
+\\usepackage{circuitikz}
+
+
+\\usepgfplotslibrary{external}
+\\tikzexternalize
+
+
+\\setmainfont[Mapping=tex-text]{Times New Roman}
+
+\\setCJKmainfont{cwTeXKai}
+
+\\XeTeXlinebreaklocale \"zh\"
+\\XeTeXlinebreakskip = 0pt plus 1pt
+
+\\usepackage[colorlinks,citecolor=red,urlcolor=blue,bookmarks=false,hypertexnames=true,bookmarks=true]{hyperref}
+
+\\usepackage[style=ieee,
+citestyle=numeric-comp,
+backend=bibtex,
+sorting=none]{biblatex}
+\\AtEveryBibitem{\\clearfield{urlyear}}
+
+\\lstdefinestyle{mystyle}{
+   backgroundcolor=\\color{backcolour},
+   commentstyle=\\color{codegreen},
+   keywordstyle=\\color{magenta},
+   numberstyle=\\tiny\\color{codegray},
+   stringstyle=\\color{codepurple},
+   basicstyle=\\ttfamily\\footnotesize,
+   breakatwhitespace=false,
+   breaklines=true,
+   captionpos=b,
+   keepspaces=true,
+   numbers=left,
+   numbersep=5pt,
+   showspaces=false,
+   showstringspaces=false,
+   showtabs=false,
+   tabsize=4
+ }
+\\lstset{style=mystyle}
+\\usepackage{setspace}
+\\singlespacing
+
+[NO-DEFAULT-PACKAGES]
+[PACKAGES]
+[EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+
+
+(add-to-list 'org-latex-classes
+               '("bw"
+                 "\\documentclass[a4paper, 12pt]{article}
+\\usepackage{fullpage,mathpazo,amsfonts,nicefrac}
+\\usepackage[top=1.5cm,bottom=1.5cm,left=1.5cm, right=1.5cm]{geometry}
+\\usepackage{enumitem}
+\\usepackage{mdframed}
+
+
+\\usepackage{paralist}
+\\renewenvironment{itemize}[1]{\\begin{compactitem}#1}{\\end{compactitem}}
+\\renewenvironment{enumerate}[1]{\\begin{compactenum}#1}{\\end{compactenum}}
+\\renewenvironment{description}[0]{\\begin{compactdesc}}{\\end{compactdesc}}
+
+\\usepackage{minted}
+\\surroundwithmdframed{minted}
+
+\\usepackage{listings}
+
+\\usepackage{fontspec}
+\\usepackage{xeCJK}
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+
+\\usepackage{subcaption}
+\\usepackage{graphicx}
+
+\\usepackage{pgfplots}
+\\usepackage{filecontents}
+\\usepackage{adjustbox}
+\\usepackage{longtable}
+\\usepackage[ruled,lined,linesnumbered]{algorithm2e}
+\\usepackage{circuitikz}
+
 
 \\usepgfplotslibrary{external}
 \\tikzexternalize
