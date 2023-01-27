@@ -7,33 +7,19 @@
 
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
-(package! imenu-anywhere)
-(package! imenu-list)
+; (package! imenu-anywhere)
+; (package! imenu-list)
 (package! key-chord)
-(package! centaur-tabs)
 (package! fill-column-indicator)
 (package! wakatime-mode)
-(package! leetcode)
 (package! shrface)
-(package! org-gcal)
-(package! org-fragtog)
-(package! ob-sagemath)
-(package! xenops)
-(package! ob-mermaid)
 (package! visual-fill-column)
-(package! org-ref)
-;; (package! ebib)
-;; (package! zotxt)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
-
-(package! org-logseq
-  :recipe (:host github :repo "llcc/org-logseq"))
-
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
 ;; `:files' in the `:recipe':
@@ -66,4 +52,3 @@
 ;; ...or multiple packages
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
-(unpin! org-gcal)

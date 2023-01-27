@@ -146,7 +146,7 @@
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       latex             ; writing papers in Emacs has never been so fun
+       ;;latex             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
@@ -154,11 +154,11 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org               ; organize your plain life in plain text
-        +pretty
-        +journal
-        +roam2
-        +dragndrop)        ; for org export
+       ;;(org               ; organize your plain life in plain text
+        ;;+pretty
+        ;;+journal
+        ;;+roam2
+        ;;+dragndrop)        ; for org export
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -181,13 +181,13 @@
        ;;yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
 
-       :email
+       ;;:email
        ;;(mu4e +org +gmail)
        ;;notmuch
        ;;(wanderlust +gmail)
 
        :app
-       calendar
+       ;;calendar
        ;;emms
        ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
