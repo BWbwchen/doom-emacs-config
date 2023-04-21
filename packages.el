@@ -12,7 +12,6 @@
 (package! key-chord)
 (package! fill-column-indicator)
 (package! wakatime-mode)
-(package! shrface)
 (package! visual-fill-column)
 
 ;; To install a package directly from a remote git repo, you must specify a
