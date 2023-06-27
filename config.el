@@ -143,3 +143,14 @@
         "/" #'comment-line)
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+; clang cc mode setting
+; NOTE: set query-driver when we don't use clang for compiling, just for lsp.
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--query-driver=/etc/profiles/per-user/bwbwchen/bin/g++"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
