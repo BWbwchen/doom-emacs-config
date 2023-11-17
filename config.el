@@ -154,3 +154,9 @@
                                 "--header-insertion=never"
                                 "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
+
+(use-package! lsp
+    :ensure
+    :custom
+    (lsp-rust-analyzer-server-display-inlay-hints t)
+)
