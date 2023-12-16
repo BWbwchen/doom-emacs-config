@@ -1,0 +1,15 @@
+* My RSS List :elfeed:
+
+** Programming :programming:
+*** https://this-week-in-rust.org/rss.xml
+*** https://newsletter.pragmaticengineer.com/feed
+
+** Blog :blog:
+Somebody's blog
+*** https://nullprogram.com/feed/
+*** https://readingoutpost.com/feed
+*** https://aliabdaal.com/newsletter/feed
+*** https://learnlearnlearn.substack.com/feed
+
+** Technology :tech:
+*** https://kyweekendmurmur.substack.com/feed

@@ -96,6 +96,13 @@
   (visual-fill-column-mode 1)
   (doom-disable-line-numbers-h)
   )
-
+(setq org-image-actual-width nil)
 (use-package! visual-fill-column
   :hook (org-mode . bw/org-mode-visual-fill))
+
+(setq rmh-elfeed-org-files '("~/.doom.d/rss.org"))
+
+(after! elfeed
+  (setq elfeed-search-filter "@2-weeks-ago"))
+
+(add-hook! 'elfeed-search-mode-hook #'elfeed-update)

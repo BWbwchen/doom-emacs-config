@@ -143,7 +143,23 @@ Set query-driver when we don't use clang for compiling, just for lsp.
   (visual-fill-column-mode 1)
   (doom-disable-line-numbers-h)
   )
-
+(setq org-image-actual-width nil)
 (use-package! visual-fill-column
   :hook (org-mode . bw/org-mode-visual-fill))
+#+end_src
+*** RSS
+Setup the rss list org file.
+#+begin_src emacs-lisp
+(setq rmh-elfeed-org-files '("~/.doom.d/rss.org"))
+#+end_src
+
+Display filter
+#+begin_src emacs-lisp
+(after! elfeed
+  (setq elfeed-search-filter "@2-weeks-ago"))
+#+end_src
+
+Autoupdate when we into the elfeed mode
+#+begin_src emacs-lisp
+(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 #+end_src
