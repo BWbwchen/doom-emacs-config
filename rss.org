@@ -2,6 +2,7 @@
 
 ** Programming :programming:
 *** https://this-week-in-rust.org/rss.xml
+*** http://mysql.taobao.org//monthly/feed.xml
 *** https://newsletter.pragmaticengineer.com/feed
 
 ** Blog :blog:
