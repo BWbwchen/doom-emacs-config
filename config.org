@@ -1,9 +1,16 @@
+* Basic information for Doom
+
+#+begin_src emacs-lisp
 (setq user-full-name "Bo-Wei Chen"
       user-mail-address "tim.chenbw@gmail.com")
 
 (setq doom-font (font-spec :family "Monaco" :size 20 :weight 'normal)
       doom-variable-pitch-font (font-spec :family "Monaco" :size 18))
+#+end_src
 
+* UI
+** font
+#+begin_src emacs-lisp
 (custom-set-faces!
   '(mode-line :family "Monaco" :height 0.9)
   '(mode-line-inactive :family "Monaco" :height 0.95))
@@ -11,26 +18,49 @@
   '(default ((t (:background "#000000"))))
   '(hl-line ((t (:background "#333333"))))
  )
+#+end_src
 
+** theme
+#+begin_src emacs-lisp
 ;;(setq doom-theme 'doom-monokai-octagon)
 (setq doom-theme 'doom-xcode)
 (setq fancy-splash-image "~/.doom.d/favicon_io/android-chrome-192x192.png")
+#+end_src
 
+Show the line number
+
+#+begin_src emacs-lisp
 (setq display-line-numbers-type t)
+#+end_src
 
+** size
+#+begin_src emacs-lisp
 (setq-default fill-column 80)
 (global-display-fill-column-indicator-mode)
+#+end_src
 
+* Customize the key binding
+Using `jk` or `kj` as esc key.
+#+begin_src emacs-lisp
 (setq key-chord-two-keys-delay 0.2)
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 (key-chord-mode 1)
+#+end_src
 
+
+* Editor functionality
+** autosave
+#+begin_src emacs-lisp
 (setq +format-on-save-enabled-modes
       '(not c-mode))
 (setq +format-on-save-enabled-modes
       '(not cpp-mode))
 (add-hook 'before-save-hook #'+format/buffer nil t)
+#+end_src
+
+** For C language
+#+begin_src emacs-lisp
 
 (display-time-mode 1)
 (column-number-mode 1)
@@ -43,9 +73,16 @@
 (require 'cc-mode)
 (add-to-list 'c-default-style '(c++-mode . "k&r"))
 (add-to-list 'c-default-style '(c-mode . "k&r"))
+#+end_src
 
+* Package
+** wakatime
+#+begin_src emacs-lisp
 (global-wakatime-mode)
+#+end_src
 
+** treemacs
+#+begin_src emacs-lisp
 (after! treemacs
   :config
         (setq treemacs-width 20)
@@ -72,7 +109,12 @@
         "/" #'comment-line)
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+#+end_src
 
+** lsp
+*** C++
+Set query-driver when we don't use clang for compiling, just for lsp.
+#+begin_src emacs-lisp
 (setq lsp-clients-clangd-args '("-j=3"
                                 "--background-index"
                                 "--clang-tidy"
@@ -81,13 +123,18 @@
                                 "--header-insertion=never"
                                 "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
-
+#+end_src
+*** Rust
+#+begin_src emacs-lisp
 (use-package! lsp
     :ensure
     :custom
     (lsp-rust-analyzer-server-display-inlay-hints t)
 )
-
+#+end_src
+** Org mode
+*** Basic
+#+begin_src emacs-lisp
 (setq org-directory "~/logseq/pages")
 (setq org-startup-with-inline-images t)
 (defun bw/org-mode-visual-fill ()
@@ -99,3 +146,4 @@
 
 (use-package! visual-fill-column
   :hook (org-mode . bw/org-mode-visual-fill))
+#+end_src

@@ -154,11 +154,12 @@
        ;;nim               ; python + lisp at the speed of c
        (nix +lsp)              ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       ;;(org               ; organize your plain life in plain text
-        ;;+pretty
-        ;;+journal
-        ;;+roam2
-        ;;+dragndrop)        ; for org export
+       (org               ; organize your plain life in plain text
+        +pretty
+        ;; +journal
+        ;; +roam2
+        ;; +dragndrop
+        )        ; for org export
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -195,7 +196,7 @@
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
-       ;;literate
+       literate
        (default +bindings +smartparens))
 
 (xterm-mouse-mode 1)
