@@ -135,7 +135,7 @@ Set query-driver when we don't use clang for compiling, just for lsp.
 ** Org mode
 *** Basic
 #+begin_src emacs-lisp
-(setq org-directory "~/logseq/pages")
+(setq org-directory "~/logseq/org")
 (setq org-startup-with-inline-images t)
 (defun bw/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
@@ -146,6 +146,7 @@ Set query-driver when we don't use clang for compiling, just for lsp.
 (setq org-image-actual-width nil)
 (use-package! visual-fill-column
   :hook (org-mode . bw/org-mode-visual-fill))
+(setq org-export-with-smart-quotes t)
 #+end_src
 *** RSS
 Setup the rss list org file.
@@ -156,7 +157,7 @@ Setup the rss list org file.
 Display filter
 #+begin_src emacs-lisp
 (after! elfeed
-  (setq elfeed-search-filter "@2-weeks-ago"))
+  (setq elfeed-search-filter "@2-days-ago"))
 #+end_src
 
 Autoupdate when we into the elfeed mode

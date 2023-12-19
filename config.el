@@ -88,7 +88,7 @@
     (lsp-rust-analyzer-server-display-inlay-hints t)
 )
 
-(setq org-directory "~/logseq/pages")
+(setq org-directory "~/logseq/org")
 (setq org-startup-with-inline-images t)
 (defun bw/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
@@ -99,10 +99,11 @@
 (setq org-image-actual-width nil)
 (use-package! visual-fill-column
   :hook (org-mode . bw/org-mode-visual-fill))
+(setq org-export-with-smart-quotes t)
 
 (setq rmh-elfeed-org-files '("~/.doom.d/rss.org"))
 
 (after! elfeed
-  (setq elfeed-search-filter "@2-weeks-ago"))
+  (setq elfeed-search-filter "@2-days-ago"))
 
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)

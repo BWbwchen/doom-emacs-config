@@ -11,6 +11,9 @@ Somebody's blog
 *** https://readingoutpost.com/feed
 *** https://aliabdaal.com/newsletter/feed
 *** https://learnlearnlearn.substack.com/feed
+*** https://stephango.com/feed.xml
+CEO of Obsidian
+*** https://sive.rs/en.atom
 
 ** Technology :tech:
 *** https://kyweekendmurmur.substack.com/feed
