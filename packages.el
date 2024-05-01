@@ -7,8 +7,6 @@
 
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
-; (package! imenu-anywhere)
-; (package! imenu-list)
 (package! key-chord)
 (package! fill-column-indicator)
 (package! wakatime-mode)

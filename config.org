@@ -46,33 +46,21 @@ Using `jk` or `kj` as esc key.
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 (key-chord-mode 1)
+
+(map! :leader
+        :desc "comment"
+        "/" #'comment-line)
 #+end_src
 
 
 * Editor functionality
-** autosave
+** Basic
 #+begin_src emacs-lisp
-(setq +format-on-save-enabled-modes
-      '(not c-mode))
-(setq +format-on-save-enabled-modes
-      '(not cpp-mode))
-(add-hook 'before-save-hook #'+format/buffer nil t)
-#+end_src
-
-** For C language
-#+begin_src emacs-lisp
-
 (display-time-mode 1)
 (column-number-mode 1)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq c-set-style "k&r")
-(setq c-basic-offset 4)
 (setq crkate-lockfiles nil)
-
-(require 'cc-mode)
-(add-to-list 'c-default-style '(c++-mode . "k&r"))
-(add-to-list 'c-default-style '(c-mode . "k&r"))
 #+end_src
 
 * Package
@@ -104,9 +92,6 @@ Using `jk` or `kj` as esc key.
 (map! :leader
         :desc "treemacs"
         "e" #'+treemacs/toggle)
-(map! :leader
-        :desc "comment"
-        "/" #'comment-line)
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
@@ -135,32 +120,12 @@ Set query-driver when we don't use clang for compiling, just for lsp.
 ** Org mode
 *** Basic
 #+begin_src emacs-lisp
-(setq org-directory "~/logseq/org")
-(setq org-startup-with-inline-images t)
 (defun bw/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1)
   (doom-disable-line-numbers-h)
   )
-(setq org-image-actual-width nil)
 (use-package! visual-fill-column
   :hook (org-mode . bw/org-mode-visual-fill))
-(setq org-export-with-smart-quotes t)
-#+end_src
-*** RSS
-Setup the rss list org file.
-#+begin_src emacs-lisp
-(setq rmh-elfeed-org-files '("~/.doom.d/rss.org"))
-#+end_src
-
-Display filter
-#+begin_src emacs-lisp
-(after! elfeed
-  (setq elfeed-search-filter "@2-days-ago"))
-#+end_src
-
-Autoupdate when we into the elfeed mode
-#+begin_src emacs-lisp
-(add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 #+end_src
