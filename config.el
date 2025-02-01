@@ -36,46 +36,50 @@
 (setq-default tab-width 4)
 (setq crkate-lockfiles nil)
 
-(global-wakatime-mode)
+;; (global-wakatime-mode)
 
-(after! treemacs
-  :config
-        (setq treemacs-width 20)
-        (setq doom-themes-treemacs-theme 'doom-colors)
-        (doom-themes-treemacs-config)
-        ;; (treemacs-display-current-project-exclusively t)
-        (treemacs-project-follow-mode t)
-        (treemacs-fringe-indicator-mode t)
-;        (treemacs-tag-follow-mode)
-        (treemacs-follow-mode)
-)
-(defface custom-line-highlight '((t (:background "#5B5B5B" :extend t))) "")
-(add-hook
- 'treemacs-mode-hook
- (defun channge-hl-line-mode ()
-   (setq-local hl-line-face 'custom-line-highlight)
-   (overlay-put hl-line-overlay 'face hl-line-face)
-   (treemacs--setup-icon-background-colors)))
 (map! :leader
-        :desc "treemacs"
-        "e" #'+treemacs/toggle)
+        :desc "neotree"
+        "e" #'+neotree/open)
 
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;; (after! treemacs
+;;   :config
+;;         (setq treemacs-width 20)
+;;         (setq doom-themes-treemacs-theme 'doom-colors)
+;;         (doom-themes-treemacs-config)
+;;         ;; (treemacs-display-current-project-exclusively t)
+;;         (treemacs-project-follow-mode t)
+;;         (treemacs-fringe-indicator-mode t)
+;; ;        (treemacs-tag-follow-mode)
+;;         (treemacs-follow-mode)
+;; )
+;; (defface custom-line-highlight '((t (:background "#5B5B5B" :extend t))) "")
+;; (add-hook
+;;  'treemacs-mode-hook
+;;  (defun channge-hl-line-mode ()
+;;    (setq-local hl-line-face 'custom-line-highlight)
+;;    (overlay-put hl-line-overlay 'face hl-line-face)
+;;    (treemacs--setup-icon-background-colors)))
+;; (map! :leader
+;;         :desc "treemacs"
+;;         "e" #'+treemacs/toggle)
 
-(setq lsp-clients-clangd-args '("-j=3"
-                                "--background-index"
-                                "--clang-tidy"
-                                "--completion-style=detailed"
-                                "--query-driver=/etc/profiles/per-user/bwbwchen/bin/g++"
-                                "--header-insertion=never"
-                                "--header-insertion-decorators=0"))
-(after! lsp-clangd (set-lsp-priority! 'clangd 2))
+;; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
-(use-package! lsp
-    :ensure
-    :custom
-    (lsp-rust-analyzer-server-display-inlay-hints t)
-)
+;; (setq lsp-clients-clangd-args '("-j=3"
+;;                                 "--background-index"
+;;                                 "--clang-tidy"
+;;                                 "--completion-style=detailed"
+;;                                 "--query-driver=/etc/profiles/per-user/bwbwchen/bin/g++"
+;;                                 "--header-insertion=never"
+;;                                 "--header-insertion-decorators=0"))
+;; (after! lsp-clangd (set-lsp-priority! 'clangd 2))
+
+;; (use-package! lsp
+;;     :ensure
+;;     :custom
+;;     (lsp-rust-analyzer-server-display-inlay-hints t)
+;; )
 
 (defun bw/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
